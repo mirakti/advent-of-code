@@ -6,6 +6,32 @@ const eachLineCleaned = [];
 file.forEach((cmd) => {
     eachLineCleaned.push(cmd.replace(/(\n\r|\n|\r)/gm, ""));
 });
+// split into individual numbers per line
+const numbersArray = [];
+eachLineCleaned.forEach((line) => {
+    numbersArray.push(line.split(""));
+});
+// deep copy of numbers
+const viewFromLeft = JSON.parse(JSON.stringify(numbersArray));
+const viewFromRight = JSON.parse(JSON.stringify(numbersArray));
+// right view is reverse of left view
+viewFromRight.forEach((line) => {
+    line.reverse();
+});
+
+// top view needs to be transposed
+const viewFromTop = [];
+for (let i = 0; i < numbersArray.length; i++) {
+    viewFromTop.push([]);
+    for (let j = 0; j < numbersArray[i].length; j++) {
+        viewFromTop[i].push(numbersArray[j][i]);
+    };
+};
+// bottom view is reverse of top view
+const viewFromBottom = JSON.parse(JSON.stringify(viewFromTop)); 
+viewFromBottom.forEach((line) => {
+    line.reverse();
+});
 
 /*
 
@@ -18,15 +44,6 @@ file.forEach((cmd) => {
 - create 4 2D arrays, one for each point of view
 */
 
+console.log(numbersArray);
 
-
-// Split each line into single numbers and push to 2D array
-
-
-
-//TODO: function searchLeft() searchRight() searchUp() searchDown()
-function lookFromLeft(row, index) {};
-function lookFromRight(row, index) {};
-function lookFromTop(column, index) {};
-function lookFromBottom(column, index) {};
-//TODO: limits for borders
+//TODO: function searchForHighestNumber and its index
