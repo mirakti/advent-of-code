@@ -1,5 +1,4 @@
 const fs = require('fs');
-let file = fs.readFileSync('C:/Users/karim/Desktop/Techstarter/gitrepo/techstarterGit/day8/input.txt', 'utf8');
 file = file.split('\n');
 // clean up the commands, each line
 const eachLineCleaned = [];

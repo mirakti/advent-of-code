@@ -1,5 +1,4 @@
 const fs = require('fs');
-const txt = fs.readFileSync('C:/Users/karim/Desktop/Techstarter/gitrepo/techstarterGit/day5/stacklist.txt', 'utf8');
 const instructions = txt.split('\n');
 
 const stacks = {

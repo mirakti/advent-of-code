@@ -1,7 +1,4 @@
-const { secureHeapUsed } = require('crypto');
 const fs = require('fs');
-const { runInThisContext } = require('vm');
-const txt = fs.readFileSync('C:/Users/karim/Desktop/Techstarter/gitrepo/techstarterGit/day3/ruckList.txt', 'utf8');
 const allRucks = txt.split("\n");
 var score = 0;
 

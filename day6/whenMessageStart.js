@@ -1,5 +1,4 @@
 const fs = require('fs');
-const code = fs.readFileSync('C:/Users/karim/Desktop/Techstarter/gitrepo/techstarterGit/day6/signal.txt', 'utf8');
 const codeArray = code.split('');
 
 for (var i = 0; i < codeArray.length; i++ ) {

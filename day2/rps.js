@@ -1,5 +1,4 @@
 const fs = require('fs');
-const st = fs.readFileSync('C:/Users/karim/Desktop/Techstarter/gitrepo/techstarterGit/day2/strategyList.txt', 'utf8');
 const roundHelpArray = st.split('\n');
 var meScore = 0;
 // console.log("roundHelpArray: " + roundHelpArray.length);

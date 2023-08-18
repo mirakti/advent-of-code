@@ -1,5 +1,4 @@
 const fs = require('fs');
-const txt = fs.readFileSync('C:/Users/karim/Desktop/Techstarter/gitrepo/techstarterGit/day4/list.txt', 'utf8');
 const allPairsArray = txt.split("\n");
 var counter = 0;
 
