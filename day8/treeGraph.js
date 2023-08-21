@@ -55,7 +55,7 @@ for (let i = 0; i < treeGraph.length; i++) {
             // only East and Sout Neighboors
             treeGraph[i][j].setEastNeighboor(treeGraph[i][j+1]);
             treeGraph[i][j].setSouthNeighboor(treeGraph[i+1][j]);
-        } else if (i === numbersArray.length - 1 && j === numbersArray.length - 1) {
+        } else if (i === numbersArray.length - 1 && j === numbersArray[i].length - 1) {
             // only West and North Neighboors
             treeGraph[i][j].setWestNeighboor(treeGraph[i][j-1]);
             treeGraph[i][j].setNorthNeighboor(treeGraph[i-1][j]);
@@ -78,6 +78,14 @@ for (let i = 0; i < treeGraph.length; i++) {
             // only West, North and South Neighboors
             treeGraph[i][j].setWestNeighboor(treeGraph[i][j-1]);
             treeGraph[i][j].setNorthNeighboor(treeGraph[i-1][j]);
+            treeGraph[i][j].setSouthNeighboor(treeGraph[i+1][j]);
+        } else if (i === numbersArray.length - 1 && j === 0) {
+            // Neighboors in East and North 
+            treeGraph[i][j].setEastNeighboor(treeGraph[i][j+1]);
+            treeGraph[i][j].setNorthNeighboor(treeGraph[i-1][j]);
+        } else if (i === 0 && j === numbersArray[i].length - 1) {
+            // Neighboors in West and South 
+            treeGraph[i][j].setWestNeighboor(treeGraph[i][j-1]);
             treeGraph[i][j].setSouthNeighboor(treeGraph[i+1][j]);
         } else { 
             // Neighboors in all directions
@@ -106,7 +114,7 @@ function getSelectionOfTrees(startingTree, direction) {
     while(currentTree[direction] != null) {
         // is the next tree higher?
         // console.log(`The ${neighboor}-neighboors height is ${currentTree[neighboor].height}`);
-        if (heightBuffer< currentTree[direction].height) {
+        if (heightBuffer < currentTree[direction].height) {
             visibleTreesFromPOV.push(currentTree[direction]);
             heightBuffer = currentTree[direction].height;
             currentTree = currentTree[direction];
@@ -152,7 +160,15 @@ function mergeAllSelections(selection) {
     selection.forEach((pointOfViewFinalist) => {
         pointOfViewFinalist.forEach((lineOfTrees) => {
             lineOfTrees.forEach((tree) => {
-                allSelectedTrees.push(tree);
+                if (allSelectedTrees.includes(tree)) {
+                    console.group("duplicate tree found");
+                    console.log(`tree at ${tree.x}, ${tree.y} is a duplicate`);
+                    console.table(tree);
+                    console.groupEnd();
+                    return;
+                } else {
+                    allSelectedTrees.push(tree);
+                };
             });
         });
     });
